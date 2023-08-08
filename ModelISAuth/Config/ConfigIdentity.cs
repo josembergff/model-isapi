@@ -1,7 +1,5 @@
 ﻿using IdentityServer4.Models;
 using IdentityServer4;
-using System.Reflection.Metadata;
-using System;
 using Common;
 
 namespace ModelISAuth.Config
@@ -51,5 +49,17 @@ namespace ModelISAuth.Config
                 new IdentityResources.Email(),
                 new IdentityResource(ConstantIdentity.Scope_Role_Value, ConstantIdentity.Scope_Role_Text, new List<string>() { ConstantIdentity.Scope_Role_Value })
             };
+
+        public static IEnumerable<ApiResource> ApiResources =>
+        new List<ApiResource>
+            {
+                new ApiResource("ModelISAPI", "Model IS API")
+                {
+                    ApiSecrets = { new Secret("secret".Sha256()) },
+
+                    Scopes = { "ModelISAPI", "profile", "openid", "email" }
+                }
+            };
+        
     }
 }
