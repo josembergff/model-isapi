@@ -1,4 +1,3 @@
-using IdentityServer4.Test;
 using ModelISAuth.Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,10 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddIdentityServer()
     .AddInMemoryClients(ConfigIdentity.Clients)
-    .AddInMemoryIdentityResources(ConfigIdentity.IdentityResources)
-    .AddInMemoryApiResources(ConfigIdentity.ApiResources)
+    // .AddInMemoryIdentityResources(ConfigIdentity.IdentityResources)
+    // .AddInMemoryApiResources(ConfigIdentity.ApiResources)
     .AddInMemoryApiScopes(ConfigIdentity.ApiScopes)
-    .AddTestUsers(new List<TestUser>())
+    // .AddTestUsers(ConfigIdentity.TestUsers)
     .AddDeveloperSigningCredential()
     ;
 
