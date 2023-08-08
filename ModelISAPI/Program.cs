@@ -5,7 +5,7 @@ using ModelISAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ModelISAPIContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ModelISAPIContext") ?? throw new InvalidOperationException("Connection string 'ModelISAPIContext' not found.")));
+    options.UseInMemoryDatabase("ModelISAPI"));
 
 // Add services to the container.
 
@@ -15,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+ModelISAPIContextSeed.SeedDatabase(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
