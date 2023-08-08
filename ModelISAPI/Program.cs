@@ -2,6 +2,8 @@
 using ModelISAPI.Data;
 using Common;
 using System.Reflection.Metadata;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Policy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthentication(ConstantIdentity.Authentication_Scheme_Bearer)
+                .AddJwtBearer(ConstantIdentity.Authentication_Scheme_Bearer, options =>
+                {
+                    options.Authority = UrlIdentity.Identity_Server;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(ConstantIdentity.Client_Id_Policy, policy => policy.RequireClaim(ConstantIdentity.Notes_Client_Id_Key, ConstantIdentity.Notes_Client_Id_Value));
+});
 
 var app = builder.Build();
 
@@ -29,7 +44,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
