@@ -14,6 +14,6 @@ namespace ModelISAPI.Data
         {
         }
 
-        public DbSet<ModelISAPI.Models.Note> Note { get; set; } = default!;
+        public DbSet<Note> Note { get; set; } = default!;
     }
 }
