@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ModelISAPI.Data;
 using ModelISAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<ModelISAPIContext>(options =>
     options.UseInMemoryDatabase("ModelISAPI"));
 
