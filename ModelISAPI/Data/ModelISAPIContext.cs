@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ModelISAPI.Models;
 
 namespace ModelISAPI.Data
@@ -14,6 +10,6 @@ namespace ModelISAPI.Data
         {
         }
 
-        public DbSet<Note> Note { get; set; } = default!;
+        public DbSet<Note> Notes { get; set; } = default!;
     }
 }

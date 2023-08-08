@@ -16,7 +16,7 @@ namespace ModelISAPI.Data
 
         public static async void SeedAsync(ModelISAPIContext modelISAPIContext)
         {
-            if (!modelISAPIContext.Note.Any())
+            if (!modelISAPIContext.Notes.Any())
             {
                 var listNote = new List<Note>
                 {

@@ -31,6 +31,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapNoteEndpoints();
-
 app.Run();
